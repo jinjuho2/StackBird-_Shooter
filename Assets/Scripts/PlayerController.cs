@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : BaseController
 {
     private Camera camera;
+    
 
     protected override void Start()
     {
         base.Start();
         camera = Camera.main;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        IsClick(); // 클릭 감지
     }
 
     protected override void HandleAction()
@@ -29,6 +37,22 @@ public class PlayerController : BaseController
         else
         {
             lookDirection = lookDirection.normalized;
+        }
+    }
+
+    public void IsClick()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+
+            foreach (Collider2D hit in hits)
+            {
+                if (hit.CompareTag("Box"))
+                {
+                    SceneManager.LoadScene("Game"); // "Game" 씬으로 이동
+                }
+            }
         }
     }
 }

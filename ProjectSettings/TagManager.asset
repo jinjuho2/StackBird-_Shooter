@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Box
+  - BackGround
+  - Enemy
+  - Bullet
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -12,9 +16,9 @@ TagManager:
   - Box
   - Water
   - UI
-  - 
-  - 
-  - 
+  - BackGround
+  - Ground
+  - Obstacle
   - 
   - 
   - 

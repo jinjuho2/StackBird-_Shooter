@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : BaseController
 {
-    private Camera camera;
-    
+    Camera camera;
 
     protected override void Start()
     {
@@ -17,14 +16,14 @@ public class PlayerController : BaseController
     protected override void Update()
     {
         base.Update();
-        IsClick(); // 클릭 감지
+        IsClick(); 
     }
 
     protected override void HandleAction()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");  // 이동 방향
-        float vertical = Input.GetAxisRaw("Vertical");   //이동 방향 
-        movementDirection = new Vector2(horizontal, vertical).normalized; // 속도 조절
+        float horizontal = Input.GetAxisRaw("Horizontal");  
+        float vertical = Input.GetAxisRaw("Vertical");  
+        movementDirection = new Vector2(horizontal, vertical).normalized; 
 
         Vector2 mousePosition = Input.mousePosition;
         Vector2 worldPos = camera.ScreenToWorldPoint(mousePosition);
@@ -50,7 +49,7 @@ public class PlayerController : BaseController
             {
                 if (hit.CompareTag("Box"))
                 {
-                    SceneManager.LoadScene("Game"); // "Game" 씬으로 이동
+                    SceneManager.LoadScene("Game"); 
                 }
             }
         }

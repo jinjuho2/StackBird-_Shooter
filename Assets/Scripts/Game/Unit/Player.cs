@@ -11,12 +11,14 @@ public class Player : BaseController
     Animator anim;
     public int hp = 3;
     HPUI hpui;
-    GameOverUI gameOverUI;
+    public GameOverUI gameOverUI;
+    private float godtime = 1f;
+
+    public AudioClip[] audioClip;
     protected override void Start()
     {
         base.Start();
         hpui = FindObjectOfType<HPUI>();
-        //gameOverUI = GameObject.Find("GameOver").GetComponent<GameOverUI>();
         anim = GetComponentInChildren<Animator>();
     }
 
@@ -28,6 +30,7 @@ public class Player : BaseController
         {
             Shoot();
         }
+        godtime -= Time.deltaTime;
 
     }
 
@@ -52,22 +55,34 @@ public class Player : BaseController
         
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            
+            if (godtime <= 0)
+            {
             hp--;
             hpui.DecreaseHp();
+            if (audioClip != null)
+            {
+                SoundManager.PlayClip(audioClip[0]);
+            }
             anim.SetBool("IsDamaged", true);
             StartCoroutine(AnimSetFalse());
             if (hp <=0 )
             {
                 Time.timeScale = 0f;
-                //gameOverUI.gameObject.SetActive(true);
+                gameOverUI.gameObject.SetActive(true);
             }
-            
+
+            }
+            godtime = 1f;
+
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             GameManager.Instance.currentScore++;
+            if (audioClip != null)
+            {
+                SoundManager.PlayClip(audioClip[1]);
+            }
         }
         
     }

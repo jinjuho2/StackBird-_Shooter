@@ -11,7 +11,7 @@ public class ScoreUI : MonoBehaviour
 
     void Awake()
     {
-        scoreText = GetComponentInChildren<TextMeshProUGUI>();
+        
     }
 
 

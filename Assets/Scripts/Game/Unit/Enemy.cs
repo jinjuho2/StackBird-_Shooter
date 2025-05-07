@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public int score = 0;
     Animator anim;
 
+    public AudioClip audioClip;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -45,7 +47,11 @@ public class Enemy : MonoBehaviour
                 
             }
             hp -= proj.bulletDamage;
-            
+            if (audioClip != null)
+            {
+                SoundManager.PlayClip(audioClip);
+            }
+
             anim.SetBool("IsDamaged" ,true);
             StartCoroutine(AnimSetFalse());
         }

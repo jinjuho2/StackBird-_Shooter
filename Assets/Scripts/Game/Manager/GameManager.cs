@@ -11,32 +11,36 @@ public class GameManager : MonoBehaviour
 
     public int level = 1;
     public int currentScore = 0;
-
-    GameOverUI gameOverUI;
-
-    private void Awake()
+    public int highScore = 0;
+    public GameOverUI gameOverUI;
+    IntroUI introUI;
+     void Awake()
     {
-        //gameOverUI = FindObjectOfType<GameOverUI>();
+        introUI = FindObjectOfType<IntroUI>();
         instance = this;
         Time.timeScale = 1f;
-        //gameOverUI.gameObject.SetActive(false);
+        if (introUI.isIntroActive)
+        {
+            Time.timeScale = 0f;
+        }    
+        gameOverUI.gameObject.SetActive(false);
     }
+
+   
 
     public void Update()
     {
-        if (currentScore % 50 == 0 && currentScore != 0)
+        if (currentScore % 50 == 0 && currentScore != 0 )
         {
             level++;
         }
+        if (currentScore <= 100 && level >= 3)
+            level = 2;
+
 
         if (level >= 4)
             level = 3;
-
-
-
     }
 
-
-
-
+  
 }

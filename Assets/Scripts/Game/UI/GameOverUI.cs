@@ -18,7 +18,7 @@ public class GameOverUI : MonoBehaviour
 
     private void Update()
     {
-        bestScore.text = GameManager.Instance.currentScore.ToString();
+        bestScore.text = GameManager.Instance.highScore.ToString();
     }
 
     public void OnClickRestart()

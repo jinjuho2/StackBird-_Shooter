@@ -103,6 +103,7 @@ MonoBehaviour:
   moveSpeed: 2
   hp: 15
   score: 3
+  audioClip: {fileID: 8300000, guid: 1965ea006c388b74ea91a94357af2771, type: 3}
 --- !u!58 &6925731388826938282
 CircleCollider2D:
   m_ObjectHideFlags: 0
